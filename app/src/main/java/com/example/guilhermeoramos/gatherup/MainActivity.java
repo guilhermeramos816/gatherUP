@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> mTitulos = new ArrayList<>();
     private ArrayList<String> mDescricoes = new ArrayList<>();
+    private ArrayList<String> mDatas = new ArrayList<>();
+    private boolean isFABOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         initInfo();
         initDate();
         setNotification();
+//        openFAB();
         goNextPage();
     }
 
@@ -43,9 +48,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CadastroStep1Activity.class);
-                MainActivity.this.startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//                Intent intent = new Intent(MainActivity.this, CadastroStep1Activity.class);
+//                MainActivity.this.startActivity(intent);
+//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                if(isFABOpen){
+                    closeFAB();
+                }else{
+                    openFAB();
+                }
             }
         });
     }
@@ -55,36 +65,47 @@ public class MainActivity extends AppCompatActivity {
 
         mTitulos.add("Estudar matemática");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar português");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar geografia");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar biologia");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar história");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar programação");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar química");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar física");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar filosofia");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar sociologia");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         mTitulos.add("Estudar literatura");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("01/01/2018");
 
         initRecyclerView();
     }
@@ -92,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerView");
         RecyclerView recyclerView = findViewById(R.id.main_recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, MainActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -123,23 +144,20 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> date = new ArrayList<>();
         date.add(Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)));
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
-            case 0:
+            case 1:
                 date.add("Domingo");
                 break;
-            case 1:
+            case 2:
                 date.add("Segunda-feira");
                 break;
-            case 2:
+            case 3:
                 date.add("Terça-feira");
                 break;
-            case 3:
+            case 4:
                 date.add("Quarta-feira");
                 break;
-            case 4:
-                date.add("Quinta-feira");
-                break;
             case 5:
-                date.add("Sexta-feira");
+                date.add("Quinta-feira");
                 break;
             case 6:
                 date.add("Sexta-feira");
@@ -195,4 +213,31 @@ public class MainActivity extends AppCompatActivity {
         TextView notification = findViewById(R.id.notification);
         notification.setText(Integer.toString(mTitulos.size()));
     }
+
+    private void openFAB(){
+        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab1 = findViewById(R.id.fab1);
+        FloatingActionButton fab2 = findViewById(R.id.fab2);
+
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point);
+        fab.startAnimation(anim);
+
+        fab1.animate().translationY(-200);
+        fab2.animate().translationY(-400);
+        isFABOpen = true;
+    }
+
+    private void closeFAB(){
+        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab1 = findViewById(R.id.fab1);
+        FloatingActionButton fab2 = findViewById(R.id.fab2);
+
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point_back);
+        fab.startAnimation(anim);
+
+        fab1.animate().translationY(0);
+        fab2.animate().translationY(0);
+        isFABOpen = false;
+    }
+
 }

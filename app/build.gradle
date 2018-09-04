@@ -29,7 +29,10 @@ dependencies {
     //recyclerView
     implementation 'com.android.support:preference-v7:27.1.1'
 
-    //coordenatorLayout
+    //coordinatorLayout
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
+
+    //carouselPicker
+    implementation 'com.github.Vatican-Cameos:CarouselPicker:v1.0'
 }

@@ -12,15 +12,59 @@
         android:layout_height="wrap_content" />
 
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/relativeLayout_date_picker"
         android:layout_width="match_parent"
-        android:layout_height="350dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <!--<TextView-->
+            <!--android:id="@+id/shape_date_picker"-->
+            <!--android:layout_width="340dp"-->
+            <!--android:layout_height="340dp"-->
+            <!--android:textAlignment="center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:background="@drawable/shape_circle_date_picker_test"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="250dp"-->
+            <!--android:layout_height="250dp"-->
+            <!--android:textAlignment="center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:background="@drawable/shape_circle_date_picker"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--/>-->
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_circle_date_picker">
+
+            <in.goodiebag.carouselpicker.CarouselPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/carouselPicker1"
+                android:background="@android:color/transparent"
+                app:items_visible="five"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom">
+
 
         <LinearLayout
             android:layout_width="match_parent"

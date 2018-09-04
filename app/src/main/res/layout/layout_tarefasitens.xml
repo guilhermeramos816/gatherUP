@@ -20,12 +20,6 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="ver mais"-->
-            <!--android:textColor="@color/colorPrimaryDark" />-->
     </LinearLayout>
 
     <TextView
@@ -33,5 +27,12 @@
         android:layout_height="wrap_content"
         android:text="Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam"
         android:id="@+id/tarefasItens_descricao"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="01/01/2001"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tarefasItens_data"/>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.guilhermeoramos.gatherup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,25 +12,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
     private static final String TAG = "RecyclerViewAdapter";
 
-    ArrayList<String> mTitulos = new ArrayList<>();
-    ArrayList<String> mDescricoes = new ArrayList<>();
-    Context mContext;
+    private ArrayList<String> mTitulos;
+    private ArrayList<String> mDescricoes;
+    private ArrayList<String> mDatas;
+    private Class mDestino;
+    private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> titulos, ArrayList<String> descricoes, Context context){
+    public RecyclerViewAdapter(ArrayList<String> titulos, ArrayList<String> descricoes, ArrayList<String> datas, Context context, Class destino){
         mTitulos = titulos;
         mDescricoes = descricoes;
+        mDatas = datas;
         mContext = context;
+        mDestino = destino;
     }
 
     @NonNull
     @Override
-    //Responsable for inflating the view
+    //Responsible for inflating the view
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_tarefasitens, parent, false);
         ViewHolder holder = new ViewHolder(view);
@@ -43,10 +49,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.titulo.setText(mTitulos.get(position));
         holder.descricao.setText(mDescricoes.get(position));
 
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on." + mTitulos.get(position));
+
+                Intent intent = new Intent(mContext, mDestino);
+                intent.putExtra("titulo", mTitulos.get(position));
+                intent.putExtra("descricao", mDescricoes.get(position));
+                intent.putExtra("data", mDatas.get(position));
+                mContext.startActivity(intent);
 
                 Toast.makeText(mContext, mTitulos.get(position), Toast.LENGTH_SHORT).show();
             }
@@ -63,12 +76,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView titulo;
         TextView descricao;
+        TextView data;
         LinearLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             titulo = itemView.findViewById(R.id.tarefasItens_titulo);
             descricao = itemView.findViewById(R.id.tarefasItens_descricao);
+            data = itemView.findViewById(R.id.tarefasItens_data);
             parentLayout = itemView.findViewById(R.id.tarefasItens_layout);
         }
     }

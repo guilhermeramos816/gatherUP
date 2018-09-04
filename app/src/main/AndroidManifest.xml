@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".CadastroStep1Activity" />
         <activity android:name=".CadastroStep2Activity" />
+        <activity android:name=".OverviewMonthActivity"/>
+        <activity android:name=".OverviewActivity" />
     </application>
 
 </manifest>

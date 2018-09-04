@@ -77,12 +77,12 @@
 
                 <TextView
                     android:id="@+id/notification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/shape_circle_info"
-                    android:padding="3dp"
                     android:text="10"
                     android:textColor="#fff"
                     android:textSize="12sp" />
@@ -94,18 +94,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_weight="100">
-
-            </android.support.v7.widget.RecyclerView>
+                android:layout_weight="100"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"></LinearLayout>
+                android:layout_height="100dp"/>
 
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:rippleColor="@color/colorPrimary" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        android:src="@android:drawable/ic_btn_speak_now"
+        app:rippleColor="@color/colorPrimary" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
