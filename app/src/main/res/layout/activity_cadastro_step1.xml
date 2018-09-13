@@ -16,13 +16,13 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Título do evento..."
+        android:hint="Título"
         android:textSize="25sp"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:hint="Descrição..."
+        android:layout_height="200dp"
+        android:hint="Descrição da sua pergunta"
         android:gravity="top"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"

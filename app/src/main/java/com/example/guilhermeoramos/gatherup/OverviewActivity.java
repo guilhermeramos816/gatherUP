@@ -42,6 +42,11 @@ public class OverviewActivity extends Activity{
         setClick(dez, "Dezembro");
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 
     private void setClick(TextView textView, final String titulo){
         textView.setOnClickListener(new View.OnClickListener() {

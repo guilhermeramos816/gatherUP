@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,36 +23,56 @@ public class OverviewMonthActivity extends Activity{
     }
 
     private void initInfo() {
-        mTitulos.add("Estudar matemática");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar português");
+        mTitulos.add("Quantos metros tem 1 km?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar geografia");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar geografia");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar geografia");
+        mTitulos.add("Quantos metro tem 1 km?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar geografia");
+        mTitulos.add("Estudar programação");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
+        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
+        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+
+        mTitulos.add("Quantos metro tem 1 km?");
+        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
+        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+
+        mTitulos.add("Quantos metro tem 1 km?");
+        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.overview_month_recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, MainActivity.class);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

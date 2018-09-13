@@ -1,5 +1,6 @@
 package com.example.guilhermeoramos.gatherup;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
@@ -37,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     //Responsible for inflating the view
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_tarefasitens, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_perguntasitens, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -60,8 +60,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("descricao", mDescricoes.get(position));
                 intent.putExtra("data", mDatas.get(position));
                 mContext.startActivity(intent);
-
-                Toast.makeText(mContext, mTitulos.get(position), Toast.LENGTH_SHORT).show();
+                ((Activity)mContext).overridePendingTransition(R.anim.slide_in_up, R.anim.no_change);
+//                Toast.makeText(mContext, mTitulos.get(position), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -84,7 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             titulo = itemView.findViewById(R.id.tarefasItens_titulo);
             descricao = itemView.findViewById(R.id.tarefasItens_descricao);
             data = itemView.findViewById(R.id.tarefasItens_data);
-            parentLayout = itemView.findViewById(R.id.tarefasItens_layout);
+            parentLayout = itemView.findViewById(R.id.perguntasItens_layout);
         }
     }
 }

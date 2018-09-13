@@ -12,89 +12,113 @@
         android:layout_height="wrap_content" />
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_date_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
-        <!--<TextView-->
-            <!--android:id="@+id/shape_date_picker"-->
-            <!--android:layout_width="340dp"-->
-            <!--android:layout_height="340dp"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@drawable/shape_circle_date_picker_test"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--/>-->
-
-        <!--<TextView-->
-            <!--android:layout_width="250dp"-->
-            <!--android:layout_height="250dp"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@drawable/shape_circle_date_picker"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--/>-->
+        <EditText
+            android:id="@+id/cadastro_step2_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="Pesquisar uma tag"
+            android:textSize="25sp" />
 
         <LinearLayout
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/shape_circle_date_picker">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <in.goodiebag.carouselpicker.CarouselPicker
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/carouselPicker1"
-                android:background="@android:color/transparent"
-                app:items_visible="five"
-                android:layout_gravity="center"
-                android:layout_centerInParent="true"
-                />
+                android:background="@drawable/shape_rectangle_background_tag"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="3dp"
+                android:text="#Mecânica"
+                android:textSize="20sp"
+                android:textColor="@color/colorGrey"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_rectangle_background_tag"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="3dp"
+                android:text="#Física"
+                android:textSize="20sp"
+                android:textColor="@color/colorGrey"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rectangle_background_tag"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="3dp"
+                android:text="#Bernoulli"
+                android:textSize="20sp"
+                android:textColor="@color/colorGrey"
+                android:layout_marginTop="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
         </LinearLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="30dp"
+            android:gravity="center">
 
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:src="@drawable/shape_circle_steps"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginRight="8dp"
+                android:src="@drawable/shape_circle_steps" />
 
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:src="@drawable/shape_circle_stepsactive"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginRight="8dp"
+                android:src="@drawable/shape_circle_stepsactive" />
 
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:src="@drawable/shape_circle_steps"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginRight="8dp"
+                android:src="@drawable/shape_circle_steps" />
 
         </LinearLayout>
 
         <include
-            android:id="@+id/cadastro_footer" layout="@layout/layout_cadastro_footer"/>
+            android:id="@+id/cadastro_footer"
+            layout="@layout/layout_cadastro_footer" />
 
     </LinearLayout>
 

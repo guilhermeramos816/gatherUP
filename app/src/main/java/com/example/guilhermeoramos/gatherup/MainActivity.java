@@ -3,7 +3,6 @@ package com.example.guilhermeoramos.gatherup;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,14 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         initInfo();
         initDate();
-        setNotification();
+//        setNotification();
 //        openFAB();
+        goNewQuestion();
         goNextPage();
     }
 
@@ -51,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent(MainActivity.this, CadastroStep1Activity.class);
 //                MainActivity.this.startActivity(intent);
 //                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                if(isFABOpen){
+                if (isFABOpen) {
                     closeFAB();
-                }else{
+                } else {
                     openFAB();
                 }
             }
@@ -63,49 +58,49 @@ public class MainActivity extends AppCompatActivity {
     private void initInfo() {
         Log.d(TAG, "initTitulos: prepating infos");
 
-        mTitulos.add("Estudar matemática");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar português");
+        mTitulos.add("Quantos metros tem 1 km?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar geografia");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar biologia");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar história");
+        mTitulos.add("Quantos metro tem 1 km?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
         mTitulos.add("Estudar programação");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar química");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar física");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar filosofia");
+        mTitulos.add("Quantos metro tem 1 km?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar sociologia");
+        mTitulos.add("Qual foi a maior guerra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Estudar literatura");
+        mTitulos.add("Quantos metro tem 1 km?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("01/01/2018");
+        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
         initRecyclerView();
     }
@@ -113,18 +108,18 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerView");
         RecyclerView recyclerView = findViewById(R.id.main_recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, MainActivity.class);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void initDate() {
-        TextView mes = findViewById(R.id.textViewMes);
+//        TextView mes = findViewById(R.id.textViewMes);
         CollapsingToolbarLayout mCollapsingToolbarLayout = findViewById(R.id.collapsingtoolbar);
 
         ArrayList<String> date = setDate();
 
-        mes.setText(date.get(2));
+//        mes.setText(date.get(2));
 
         String dia = "";
 
@@ -133,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
         else
             dia = date.get(0);
 
-        mCollapsingToolbarLayout.setTitle(date.get(1) + ", " + dia);
+//        mCollapsingToolbarLayout.setTitle(date.get(1) + ", " + dia);
+        mCollapsingToolbarLayout.setTitle("Mais vistas");
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedToolbar);
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.collapsedToolbar);
 
@@ -209,12 +205,8 @@ public class MainActivity extends AppCompatActivity {
         return date;
     }
 
-    private void setNotification() {
-        TextView notification = findViewById(R.id.notification);
-        notification.setText(Integer.toString(mTitulos.size()));
-    }
 
-    private void openFAB(){
+    private void openFAB() {
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
@@ -227,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         isFABOpen = true;
     }
 
-    private void closeFAB(){
+    private void closeFAB() {
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
@@ -240,4 +232,24 @@ public class MainActivity extends AppCompatActivity {
         isFABOpen = false;
     }
 
+    private void goNewQuestion() {
+        FloatingActionButton fab1 = findViewById(R.id.fab1);
+        FloatingActionButton fab2 = findViewById(R.id.fab2);
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CadastroStep1Activity.class);
+                MainActivity.this.startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
+                MainActivity.this.startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+    }
 }
