@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
         mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
-        mTitulos.add("Qual foi a maior guerra que já existiu?");
+        mTitulos.add("Qual foi a maior gu'erra que já existiu?");
         mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
         mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
 
