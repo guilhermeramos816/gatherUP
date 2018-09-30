@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OverviewMonthActivity">
+    tools:context=".GruposGrupoActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:background="#fafafa">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingtoolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorWhite"
@@ -46,16 +44,16 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="90dp">
+                android:layout_marginTop="100dp">
 
                 <TextView
-                    android:id="@+id/overview_month_titulo"
+                    android:id="@+id/grupos_grupo_titulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Janeiro"
+                    android:text="Estudar matemática"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -64,7 +62,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/overview_month_recyclerView"
+        android:id="@+id/grupos_grupo_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

@@ -6,14 +6,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CadastroStep2Activity extends Activity {
+    String titulo;
+    String descricao;
+    String tag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_step2);
         goNextPage();
+        getIncomingIntent();
+    }
+
+    private void getIncomingIntent() {
+        if (getIntent().hasExtra("titulo") && getIntent().hasExtra("descricao")) {
+            titulo = getIntent().getStringExtra("titulo");
+            descricao = getIntent().getStringExtra("descricao");
+        }
     }
 
     @Override
@@ -35,10 +51,19 @@ public class CadastroStep2Activity extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                novaPergunta();
                 Intent intent = new Intent(CadastroStep2Activity.this, CadastroStep3Activity.class);
                 CadastroStep2Activity.this.startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
+
+    private void novaPergunta() {
+        EditText editTextTag = findViewById(R.id.cadastro_step2_tags);
+        tag = editTextTag.getText().toString().trim();
+        Firebase firebase = new Firebase();
+        firebase.enviarPergunta(titulo, descricao, tag);
+    }
+
 }

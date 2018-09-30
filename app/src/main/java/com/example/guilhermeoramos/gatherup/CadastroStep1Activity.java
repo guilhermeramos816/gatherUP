@@ -7,9 +7,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class CadastroStep1Activity extends Activity{
+import org.w3c.dom.Text;
+
+public class CadastroStep1Activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,15 @@ public class CadastroStep1Activity extends Activity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CadastroStep1Activity.this, CadastroStep2Activity.class);
+
+                EditText editTextPergunta = findViewById(R.id.cadastro_step1_titulo);
+                String titulo = editTextPergunta.getText().toString().trim();
+
+                EditText editTextDescricao = findViewById(R.id.cadastro_step1_descricao);
+                String descricao = editTextDescricao.getText().toString().trim();
+
+                intent.putExtra("titulo", titulo);
+                intent.putExtra("descricao", descricao);
                 CadastroStep1Activity.this.startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }

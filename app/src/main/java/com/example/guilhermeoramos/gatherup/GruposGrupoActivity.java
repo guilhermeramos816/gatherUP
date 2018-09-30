@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class OverviewMonthActivity extends Activity {
+public class GruposGrupoActivity extends Activity {
     private ArrayList<String> mTitulos = new ArrayList<>();
     private ArrayList<String> mDescricoes = new ArrayList<>();
     private ArrayList<String> mDatas = new ArrayList<>();
@@ -17,7 +17,7 @@ public class OverviewMonthActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_overview_month);
+        setContentView(R.layout.activity_grupos_grupo);
         getIncomingIntent();
         initInfo();
     }
@@ -32,16 +32,16 @@ public class OverviewMonthActivity extends Activity {
     }
 
     private void initRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.overview_month_recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.grupos_grupo_recyclerview);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void getIncomingIntent() {
-        if (getIntent().hasExtra("titulo") && getIntent().hasExtra("titulo")) {
+        if (getIntent().hasExtra("titulo")) {
             String titulo = getIntent().getStringExtra("titulo");
-            TextView textView = findViewById(R.id.overview_month_titulo);
+            TextView textView = findViewById(R.id.grupos_grupo_titulo);
             textView.setText(titulo);
         }
     }

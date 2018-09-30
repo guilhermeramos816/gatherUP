@@ -11,8 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,21 +39,22 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started.");
 
         initInfo();
-        initDate();
-//        setNotification();
-//        openFAB();
+        initToolbar();
         goNewQuestion();
         goNextPage();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
 
     private void goNextPage() {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, CadastroStep1Activity.class);
-//                MainActivity.this.startActivity(intent);
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 if (isFABOpen) {
                     closeFAB();
                 } else {
@@ -58,49 +67,11 @@ public class MainActivity extends AppCompatActivity {
     private void initInfo() {
         Log.d(TAG, "initTitulos: prepating infos");
 
-        mTitulos.add("Qual foi a maior guerra que já existiu?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Quantos metros tem 1 km?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Qual foi a maior guerra que já existiu?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Qual foi a maior guerra que já existiu?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Quantos metro tem 1 km?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Estudar programação");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Qual foi a maior guerra que já existiu?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Qual foi a maior gu'erra que já existiu?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Quantos metro tem 1 km?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Qual foi a maior guerra que já existiu?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-
-        mTitulos.add("Quantos metro tem 1 km?");
-        mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-        mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+        for (int i = 0; i < 10; i++) {
+            mTitulos.add("Qual foi a maior guerra que já existiu?");
+            mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
+            mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
+        }
 
         initRecyclerView();
     }
@@ -113,109 +84,25 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void initDate() {
-//        TextView mes = findViewById(R.id.textViewMes);
+    private void initToolbar() {
         CollapsingToolbarLayout mCollapsingToolbarLayout = findViewById(R.id.collapsingtoolbar);
-
-        ArrayList<String> date = setDate();
-
-//        mes.setText(date.get(2));
-
-        String dia = "";
-
-        if (Integer.parseInt(date.get(0)) < 10)
-            dia = "0" + date.get(0);
-        else
-            dia = date.get(0);
-
-//        mCollapsingToolbarLayout.setTitle(date.get(1) + ", " + dia);
         mCollapsingToolbarLayout.setTitle("Mais vistas");
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedToolbar);
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.collapsedToolbar);
-
     }
-
-    private ArrayList<String> setDate() {
-        Calendar calendar = Calendar.getInstance();
-        ArrayList<String> date = new ArrayList<>();
-        date.add(Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)));
-        switch (calendar.get(Calendar.DAY_OF_WEEK)) {
-            case 1:
-                date.add("Domingo");
-                break;
-            case 2:
-                date.add("Segunda-feira");
-                break;
-            case 3:
-                date.add("Terça-feira");
-                break;
-            case 4:
-                date.add("Quarta-feira");
-                break;
-            case 5:
-                date.add("Quinta-feira");
-                break;
-            case 6:
-                date.add("Sexta-feira");
-                break;
-            case 7:
-                date.add("Sábado");
-                break;
-        }
-
-        switch (calendar.get(Calendar.MONTH)) {
-            case 0:
-                date.add("Janeiro");
-                break;
-            case 1:
-                date.add("Fevereiro");
-                break;
-            case 2:
-                date.add("Março");
-                break;
-            case 3:
-                date.add("Abril");
-                break;
-            case 4:
-                date.add("Maio");
-                break;
-            case 5:
-                date.add("Junho");
-                break;
-            case 6:
-                date.add("Julho");
-                break;
-            case 7:
-                date.add("Agosto");
-                break;
-            case 8:
-                date.add("Setembro");
-                break;
-            case 9:
-                date.add("Outubro");
-                break;
-            case 10:
-                date.add("Novembro");
-                break;
-            case 11:
-                date.add("Dezembro");
-                break;
-        }
-
-        return date;
-    }
-
 
     private void openFAB() {
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
+        FloatingActionButton fab3 = findViewById(R.id.fab3);
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point);
         fab.startAnimation(anim);
 
         fab1.animate().translationY(-200);
         fab2.animate().translationY(-400);
+        fab3.animate().translationY(-600);
         isFABOpen = true;
     }
 
@@ -223,18 +110,21 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
+        FloatingActionButton fab3 = findViewById(R.id.fab3);
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point_back);
         fab.startAnimation(anim);
 
         fab1.animate().translationY(0);
         fab2.animate().translationY(0);
+        fab3.animate().translationY(0);
         isFABOpen = false;
     }
 
     private void goNewQuestion() {
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
+        FloatingActionButton fab3 = findViewById(R.id.fab3);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -246,10 +136,24 @@ public class MainActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GruposActivity.class);
+                MainActivity.this.startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
                 MainActivity.this.startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }
