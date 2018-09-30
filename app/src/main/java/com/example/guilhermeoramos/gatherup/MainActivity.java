@@ -11,9 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +28,17 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mTitulos = new ArrayList<>();
     private ArrayList<String> mDescricoes = new ArrayList<>();
     private ArrayList<String> mDatas = new ArrayList<>();
+    private ArrayList<String> mAutores = new ArrayList<>();
+    private ArrayList<String> mLikes = new ArrayList<>();
+    private ArrayList<String> mComentarios = new ArrayList<>();
+    private ArrayList<String> mPerguntasID = new ArrayList<>();
+
     private boolean isFABOpen = false;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference refPerguntas = database.getReference("perguntas");
+
+    private String user_id = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +46,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started.");
 
-        initInfo();
+        readData(new MyCallback() {
+            @Override
+            public void onCallback() {
+                initRecyclerView();
+            }
+        });
         initToolbar();
         goNewQuestion();
         goNextPage();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public interface MyCallback {
+        void onCallback();
     }
 
+    public void readData(final MyCallback myCallback) {
+        refPerguntas
+                .orderByChild("usuario_id")
+                .startAt(user_id)
+                .endAt(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Pergunta pergunta = ds.getValue(Pergunta.class);
+                    mTitulos.add(pergunta.titulo);
+                    mDescricoes.add(pergunta.descricao);
+                    mDatas.add(pergunta.data);
+                    mAutores.add("Por Guilherme Ramos, em ");
+                    mLikes.add(pergunta.likes);
+                    mComentarios.add(pergunta.comentarios);
+                    mPerguntasID.add(pergunta.pergunta_id);
+                }
+                myCallback.onCallback();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
     private void goNextPage() {
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -64,22 +101,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initInfo() {
-        Log.d(TAG, "initTitulos: prepating infos");
-
-        for (int i = 0; i < 10; i++) {
-            mTitulos.add("Qual foi a maior guerra que já existiu?");
-            mDescricoes.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-            mDatas.add("Por Guilherme Ramos, 5 minutos atrás");
-        }
-
-        initRecyclerView();
-    }
-
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerView");
         RecyclerView recyclerView = findViewById(R.id.main_recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, this, PerguntaActivity.class);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mPerguntasID, this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

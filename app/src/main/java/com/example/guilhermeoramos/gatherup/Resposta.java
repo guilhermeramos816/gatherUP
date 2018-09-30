@@ -4,31 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Pergunta {
+public class Resposta {
     String pergunta_id;
+    String resposta_id;
     String usuario_id;
-    String titulo;
-    String descricao;
-    String tag;
+    String resposta;
     String data;
     String likes;
     String comentarios;
 
-    public Pergunta(){
+    public Resposta(){
 
     }
 
-    public Pergunta(String pergunta_id, String titulo, String descricao, String tag, String likes, String comentarios){
+    public Resposta(String pergunta_id, String resposta_id, String usuario_id, String resposta, String likes, String comentarios){
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyyy");
         this.pergunta_id = pergunta_id;
-        this.usuario_id = "1";
-        this.titulo = titulo;
-        this.descricao = descricao;
+        this.resposta_id = resposta_id;
+        this.usuario_id = usuario_id;
+        this.resposta = resposta;
         this.data = formatter.format(todayDate);
-        this.tag = tag;
         this.likes = likes;
         this.comentarios = comentarios;
     }
-
 }

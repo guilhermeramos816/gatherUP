@@ -8,6 +8,13 @@
     android:orientation="horizontal"
     android:weightSum="100">
 
+    <TextView
+        android:id="@+id/tarefasItens_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID1233443AAS"
+        android:textSize="0sp" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -34,6 +41,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tarefasItens_likes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -72,6 +80,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tarefasItens_comentarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -114,12 +123,26 @@
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam" />
 
-            <TextView
-                android:id="@+id/tarefasItens_data"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Por Guilherme Ramos, 5 minutos atrás"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tarefasItens_autor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Por Guilherme Ramos," />
+
+                <TextView
+                    android:id="@+id/tarefasItens_data_"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=" em 30/09/2018" />
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

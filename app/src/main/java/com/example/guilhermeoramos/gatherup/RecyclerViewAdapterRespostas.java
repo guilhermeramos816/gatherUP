@@ -13,21 +13,21 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerViewAdapterRespostas.ViewHolder> {
 
+    private ArrayList<String> mRespostasID;
     private ArrayList<String> mRespostas;
     private ArrayList<String> mAutores;
     private ArrayList<String> mDatas;
     private ArrayList<String> mLikes;
     private ArrayList<String> mComentarios;
-    private ArrayList<String> mPontos;
     private Context mContext;
 
-    public RecyclerViewAdapterRespostas(ArrayList<String> respostas, ArrayList<String> autores, ArrayList<String> datas, ArrayList<String> likes, ArrayList<String> comentarios, ArrayList<String> pontos, Context context) {
+    public RecyclerViewAdapterRespostas(ArrayList<String> respostasID, ArrayList<String> respostas, ArrayList<String> autores, ArrayList<String> datas, ArrayList<String> likes, ArrayList<String> comentarios, Context context) {
+        mRespostasID = respostasID;
         mRespostas = respostas;
         mAutores = autores;
         mDatas = datas;
         mLikes = likes;
         mComentarios = comentarios;
-        mPontos = pontos;
         mContext = context;
     }
 
@@ -42,12 +42,12 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.respostaID.setText(mRespostasID.get(position));
         holder.resposta.setText(mRespostas.get(position));
         holder.autor.setText(mAutores.get(position));
         holder.data.setText(mDatas.get(position));
         holder.likes.setText(mLikes.get(position));
         holder.comentarios.setText(mComentarios.get(position));
-        holder.pontos.setText(mPontos.get(position));
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,22 +63,22 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView respostaID;
         TextView resposta;
         TextView autor;
         TextView data;
         TextView likes;
         TextView comentarios;
-        TextView pontos;
         LinearLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            respostaID = itemView.findViewById(R.id.respostasItens_repostaid);
             resposta = itemView.findViewById(R.id.respostasItens_reposta);
             autor = itemView.findViewById(R.id.respostasItens_autor);
             data = itemView.findViewById(R.id.respostasItens_data);
             likes = itemView.findViewById(R.id.respostasItens_likes);
             comentarios = itemView.findViewById(R.id.respostasItens_comentarios);
-            pontos = itemView.findViewById(R.id.respostasItens_pontos);
             parentLayout = itemView.findViewById(R.id.perguntasItens_layout);
         }
     }
