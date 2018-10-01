@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,7 +23,7 @@ public class CadastroStep3Activity extends Activity {
     }
 
     private void goNextPage() {
-        Button btn = findViewById(R.id.btncontinuar);
+        FloatingActionButton btn = findViewById(R.id.btncontinuar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

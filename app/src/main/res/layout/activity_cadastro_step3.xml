@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp">
 
     <include
         android:id="@+id/cadastro_header"
@@ -12,10 +13,19 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:text="Sua pergunta foi registrada!"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agora é só esperar alguém responder. O que você acha de responder algumas perguntas também? :-)"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

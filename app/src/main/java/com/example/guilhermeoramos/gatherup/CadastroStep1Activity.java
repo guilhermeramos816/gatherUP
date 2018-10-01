@@ -29,13 +29,13 @@ public class CadastroStep1Activity extends Activity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus) {
-            TextView textView = findViewById(R.id.btncontinuar);
+            FloatingActionButton textView = findViewById(R.id.btncontinuar);
             textView.startAnimation(AnimationUtils.loadAnimation(CadastroStep1Activity.this, R.anim.slide_left_center));
         }
     }
 
     private void goNextPage() {
-        Button btn = findViewById(R.id.btncontinuar);
+        FloatingActionButton btn = findViewById(R.id.btncontinuar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

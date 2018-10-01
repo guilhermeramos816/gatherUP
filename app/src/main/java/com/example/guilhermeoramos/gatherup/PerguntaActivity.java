@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -38,7 +39,7 @@ public class PerguntaActivity extends Activity {
 
     private String perguntaID;
 
-    Button btnResponder;
+    FloatingActionButton btnResponder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,9 +111,20 @@ public class PerguntaActivity extends Activity {
     private void getIncomingIntent() {
         if (getIntent().hasExtra("titulo") && getIntent().hasExtra("titulo")) {
             String titulo = getIntent().getStringExtra("titulo");
+            String descricao = getIntent().getStringExtra("descricao");
+            String data = getIntent().getStringExtra("data");
+            String autor = getIntent().getStringExtra("autor");
             perguntaID = getIntent().getStringExtra("perguntaid");
-            TextView textView = findViewById(R.id.pergunta_titulo);
-            textView.setText(titulo);
+
+            TextView txtTitulo = findViewById(R.id.pergunta_titulo);
+            txtTitulo.setText(titulo);
+            TextView txtDescricao = findViewById(R.id.pergunta_descricao);
+            txtDescricao.setText(descricao);
+//            TextView txtData = findViewById(R.id.pergunta_data);
+//            txtData.setText(data);
+//            TextView txtAutor = findViewById(R.id.pergunta_autor);
+//            txtAutor.setText(autor);
+
         }
     }
 

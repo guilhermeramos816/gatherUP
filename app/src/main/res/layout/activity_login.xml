@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_gradient"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="20dp"
-    android:gravity="center">
+    android:paddingTop="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,15 +22,16 @@
             android:layout_height="wrap_content"
             android:text="gather"
             android:textColor="@color/colorWhite"
-            android:textSize="30sp"
+            android:textSize="38sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:alpha="0.85"
             android:text="UP"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="40sp"
+            android:textColor="@color/colorWhite"
+            android:textSize="38dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -48,7 +49,7 @@
         android:gravity="center"
         android:paddingTop="10dp"
         android:text="Pra acessar essa opção você precisa estar logado."
-        android:textColor="@color/colorGreyLight"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -64,7 +65,8 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:hint="Usuário"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorGreyLight" />
 
         <EditText
             android:id="@+id/login_senha"
@@ -72,15 +74,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="Senha"
+            android:inputType="textPassword"
             android:textColor="@color/colorWhite"
-            android:inputType="textPassword"/>
+            android:textColorHint="@color/colorGreyLight" />
 
         <Button
             android:id="@+id/login_entrar"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/shape_rectangle_btntarefa"
+            android:background="@drawable/shape_rectangle_btnlogin"
             android:text="Entrar"
             android:textColor="@color/colorWhite" />
 

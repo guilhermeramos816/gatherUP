@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="100dp"
     android:gravity="center|bottom"
     android:orientation="horizontal"
     android:layout_gravity="bottom"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btncontinuar"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/shape_rectangle_btntarefa"
-        android:gravity="center"
-        android:paddingHorizontal="30dp"
-        android:text="Continuar"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_chevronright"
+        android:gravity="center"/>
 
 </LinearLayout>

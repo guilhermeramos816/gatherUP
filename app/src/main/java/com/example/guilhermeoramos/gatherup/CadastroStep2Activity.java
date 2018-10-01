@@ -3,6 +3,7 @@ package com.example.guilhermeoramos.gatherup;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -38,13 +39,13 @@ public class CadastroStep2Activity extends Activity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus) {
-            TextView textView = findViewById(R.id.btncontinuar);
+            FloatingActionButton textView = findViewById(R.id.btncontinuar);
             textView.startAnimation(AnimationUtils.loadAnimation(CadastroStep2Activity.this, R.anim.slide_left_center));
         }
     }
 
     private void goNextPage() {
-        Button btn = findViewById(R.id.btncontinuar);
+        FloatingActionButton btn = findViewById(R.id.btncontinuar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

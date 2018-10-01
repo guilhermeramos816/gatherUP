@@ -19,65 +19,36 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/cadastro_step2_tags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:hint="Pesquisar uma tag"
-            android:inputType="textCapSentences"
-            android:textSize="25sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
-            <Button
+            <EditText
+                android:id="@+id/cadastro_step2_tags"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="95"
+                android:hint="Pesquisar uma tag"
+                android:inputType="textCapSentences"
+                android:textSize="25sp" />
+
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_rectangle_background_tag"
-                android:paddingBottom="3dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="3dp"
-                android:text="#Mecânica"
-                android:textColor="@color/colorGrey"
-                android:textSize="20sp" />
+                android:layout_weight="10"
+                android:src="@drawable/ic_search" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/shape_rectangle_background_tag"
-                android:paddingBottom="3dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="3dp"
-                android:text="#Física"
-                android:textColor="@color/colorGrey"
-                android:textSize="20sp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/shape_rectangle_background_tag"
-                android:paddingBottom="3dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="3dp"
-                android:text="#Bernoulli"
-                android:textColor="@color/colorGrey"
-                android:textSize="20sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp" />
         </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="240dp" />
 
 
     </LinearLayout>

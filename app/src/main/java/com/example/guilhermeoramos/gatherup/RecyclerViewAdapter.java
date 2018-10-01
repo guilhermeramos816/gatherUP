@@ -70,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("titulo", mTitulos.get(position));
                 intent.putExtra("descricao", mDescricoes.get(position));
                 intent.putExtra("data", mDatas.get(position));
+                intent.putExtra("autor", mAutores.get(position));
                 intent.putExtra("perguntaid", mPerguntasID.get(position));
                 mContext.startActivity(intent);
                 ((Activity)mContext).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
