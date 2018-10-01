@@ -51,13 +51,13 @@ public class OverviewMonthActivity extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Pergunta pergunta = ds.getValue(Pergunta.class);
-                    mTitulos.add(pergunta.titulo);
-                    mDescricoes.add(pergunta.descricao);
-                    mDatas.add(pergunta.data);
+                    mTitulos.add(pergunta.getTitulo());
+                    mDescricoes.add(pergunta.getDescricao());
+                    mDatas.add(pergunta.getData());
                     mAutores.add("Por Guilherme Ramos, em ");
-                    mLikes.add(pergunta.likes);
-                    mComentarios.add(pergunta.comentarios);
-                    mPerguntasID.add(pergunta.pergunta_id);
+                    mLikes.add(pergunta.getLikes());
+                    mComentarios.add(pergunta.getComentarios());
+                    mPerguntasID.add(pergunta.getPergunta_id());
                 }
                 myCallback.onCallback();
             }

@@ -2,12 +2,18 @@ package com.example.guilhermeoramos.gatherup;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,17 +38,34 @@ public class PerguntaActivity extends Activity {
 
     private String perguntaID;
 
+    Button btnResponder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pergunta);
+
+        btnResponder = findViewById(R.id.pergunta_responder);
+
         getIncomingIntent();
-//        initInfo();
         readData(new MyCallback() {
             @Override
             public void onCallback() {
-                Log.d("MyApp: Pergunta ID", perguntaID);
                 initRecyclerView();
+            }
+        });
+
+        responder();
+    }
+
+    private void responder(){
+        btnResponder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PerguntaActivity.this, ResponderActivity.class);
+                intent.putExtra("perguntaid", perguntaID);
+                PerguntaActivity.this.startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
@@ -52,26 +75,36 @@ public class PerguntaActivity extends Activity {
     }
 
     public void readData(final MyCallback myCallback) {
-        refRespostas.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Resposta resposta = ds.getValue(Resposta.class);
+        refRespostas
+                .orderByChild("pergunta_id")
+                .startAt(perguntaID)
+                .endAt(perguntaID)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            Resposta resposta = ds.getValue(Resposta.class);
+                            mPerguntasID.add(resposta.getPergunta_id());
+                            mRespostasID.add(resposta.getResposta_id());
+                            mRespostas.add(resposta.getResposta());
+                            mAutores.add("Por Guilherme Ramos, em ");
+                            mDatas.add(resposta.getData());
+                            mLikes.add(resposta.getLikes());
+                            mComentarios.add(resposta.getComentarios());
+                        }
+                        myCallback.onCallback();
+                    }
 
-                }
-                myCallback.onCallback();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
     }
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.no_change, R.anim.slide_out_down);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void getIncomingIntent() {
@@ -89,17 +122,5 @@ public class PerguntaActivity extends Activity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-    private void initInfo() {
-        for (int i = 0; i < 10; i++) {
-            mRespostas.add("Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam");
-            mAutores.add("Por Julia Souza, ");
-            mDatas.add("em 29/09/2018");
-            mLikes.add("10");
-            mComentarios.add("5");
-        }
-        initRecyclerView();
-    }
-
 
 }

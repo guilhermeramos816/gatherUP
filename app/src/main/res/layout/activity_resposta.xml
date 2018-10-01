@@ -17,7 +17,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorGreyLight"
+                android:background="@color/colorWhite"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
@@ -30,28 +30,35 @@
                     android:layout_marginTop="8dp" />
 
                 <TextView
-                    android:id="@+id/pergunta_titulo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    android:text="Quantos metros tem 1km?"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="21sp" />
-
-                <TextView
+                    android:id="@+id/resposta_resposta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Lorem ipsum dolor sit amet, suas nominati quo no, nec consul audire ad. Tollit soleat virtute et quo, quo ea dicunt utamur, ei mel simul dicam"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Por Guilherme Ramos, 5 minutos atrás."
-                    android:textColor="@color/colorGrey" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/resposta_autor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Por Guilherme Ramos, "
+                        android:textColor="@color/colorGrey" />
+
+                    <TextView
+                        android:id="@+id/resposta_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="em 30/09/2018"
+                        android:textColor="@color/colorGrey" />
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -60,28 +67,22 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/pergunta_recyclerView"
+        android:id="@+id/resposta_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/resposta_responder"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom">
-        <Button
-            android:id="@+id/pergunta_responder"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/shape_rectangle_btntarefa"
-            android:gravity="center"
-            android:paddingHorizontal="30dp"
-            android:text="Responder"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
-            android:layout_gravity="bottom|center"/>
-
-    </RelativeLayout>
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_rectangle_btntarefa"
+        android:gravity="center"
+        android:paddingHorizontal="30dp"
+        android:text="Responder"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
 
 </android.support.design.widget.CoordinatorLayout>

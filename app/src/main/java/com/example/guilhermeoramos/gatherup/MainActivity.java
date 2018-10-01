@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: started.");
 
         readData(new MyCallback() {
             @Override
@@ -70,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Pergunta pergunta = ds.getValue(Pergunta.class);
-                    mTitulos.add(pergunta.titulo);
-                    mDescricoes.add(pergunta.descricao);
-                    mDatas.add(pergunta.data);
+                    mTitulos.add(pergunta.getTitulo());
+                    mDescricoes.add(pergunta.getDescricao());
+                    mDatas.add(pergunta.getData());
                     mAutores.add("Por Guilherme Ramos, em ");
-                    mLikes.add(pergunta.likes);
-                    mComentarios.add(pergunta.comentarios);
-                    mPerguntasID.add(pergunta.pergunta_id);
+                    mLikes.add(pergunta.getLikes());
+                    mComentarios.add(pergunta.getComentarios());
+                    mPerguntasID.add(pergunta.getPergunta_id());
                 }
                 myCallback.onCallback();
             }
@@ -121,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
         FloatingActionButton fab3 = findViewById(R.id.fab3);
+        FloatingActionButton fab4 = findViewById(R.id.fab4);
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point);
         fab.startAnimation(anim);
@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         fab1.animate().translationY(-200);
         fab2.animate().translationY(-400);
         fab3.animate().translationY(-600);
+        fab4.animate().translationY(-800);
         isFABOpen = true;
     }
 
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
         FloatingActionButton fab3 = findViewById(R.id.fab3);
+        FloatingActionButton fab4 = findViewById(R.id.fab4);
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point_back);
         fab.startAnimation(anim);
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         fab1.animate().translationY(0);
         fab2.animate().translationY(0);
         fab3.animate().translationY(0);
+        fab4.animate().translationY(0);
         isFABOpen = false;
     }
 
@@ -150,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab1 = findViewById(R.id.fab1);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
         FloatingActionButton fab3 = findViewById(R.id.fab3);
+        FloatingActionButton fab4 = findViewById(R.id.fab4);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,12 +165,20 @@ public class MainActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, GruposActivity.class);
+                Intent intent = new Intent(MainActivity.this, PesquisaActivity.class);
                 MainActivity.this.startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GruposActivity.class);
+                MainActivity.this.startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+        fab4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, OverviewActivity.class);

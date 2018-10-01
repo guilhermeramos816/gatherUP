@@ -1,6 +1,8 @@
 package com.example.guilhermeoramos.gatherup;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +43,7 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.respostaID.setText(mRespostasID.get(position));
         holder.resposta.setText(mRespostas.get(position));
         holder.autor.setText(mAutores.get(position));
@@ -52,7 +54,13 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //aqui é onde vamos chamar a nova intent, aquela que vai conter a opção de reposta
+                Intent intent = new Intent(mContext, RespostaActivity.class);
+                intent.putExtra("resposta", mRespostas.get(position));
+                intent.putExtra("autor", mAutores.get(position));
+                intent.putExtra("data", mDatas.get(position));
+                intent.putExtra("repostaid", mRespostasID.get(position));
+                mContext.startActivity(intent);
+                ((Activity)mContext).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +22,7 @@ public class GruposGrupoActivity extends Activity {
     private ArrayList<String> mAutores = new ArrayList<>();
     private ArrayList<String> mLikes = new ArrayList<>();
     private ArrayList<String> mComentarios = new ArrayList<>();
-    private ArrayList<String> mIDs = new ArrayList<>();
+    private ArrayList<String> mPerguntasID = new ArrayList<>();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference refPerguntas = database.getReference("perguntas");
@@ -52,13 +51,13 @@ public class GruposGrupoActivity extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Pergunta pergunta = ds.getValue(Pergunta.class);
-                    mTitulos.add(pergunta.titulo);
-                    mDescricoes.add(pergunta.descricao);
-                    mDatas.add(pergunta.data);
+                    mTitulos.add(pergunta.getTitulo());
+                    mDescricoes.add(pergunta.getDescricao());
+                    mDatas.add(pergunta.getData());
                     mAutores.add("Por Guilherme Ramos, em ");
-                    mLikes.add(pergunta.likes);
-                    mComentarios.add(pergunta.comentarios);
-                    mIDs.add(pergunta.pergunta_id);
+                    mLikes.add(pergunta.getLikes());
+                    mComentarios.add(pergunta.getComentarios());
+                    mPerguntasID.add(pergunta.getPergunta_id());
                 }
                 myCallback.onCallback();
             }
@@ -71,7 +70,7 @@ public class GruposGrupoActivity extends Activity {
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.grupos_grupo_recyclerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mIDs, this, PerguntaActivity.class);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mPerguntasID, this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

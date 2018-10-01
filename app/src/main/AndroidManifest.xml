@@ -28,6 +28,9 @@
         <activity android:name=".GruposGrupoActivity"/>
         <activity android:name=".NovoGrupoStep1"/>
         <activity android:name=".NovoGrupoStep2"/>
+        <activity android:name=".RespostaActivity"/>
+        <activity android:name=".ResponderActivity"/>
+        <activity android:name=".PesquisaActivity"/>
     </application>
 
 </manifest>

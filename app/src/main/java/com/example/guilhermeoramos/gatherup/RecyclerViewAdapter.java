@@ -72,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("data", mDatas.get(position));
                 intent.putExtra("perguntaid", mPerguntasID.get(position));
                 mContext.startActivity(intent);
-                ((Activity)mContext).overridePendingTransition(R.anim.slide_in_up, R.anim.no_change);
+                ((Activity)mContext).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
