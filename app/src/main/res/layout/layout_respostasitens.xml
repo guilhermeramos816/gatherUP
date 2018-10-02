@@ -30,9 +30,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
-                android:gravity="center"
+                android:gravity="top"
                 android:orientation="vertical"
-                android:paddingLeft="5dp">
+                android:paddingLeft="8dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -40,6 +40,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/respostasItens_up"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:background="@drawable/shape_circle_info_light"
@@ -59,6 +60,7 @@
                         android:text="12" />
 
                     <LinearLayout
+                        android:id="@+id/respostasItens_down"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:background="@drawable/shape_circle_info_light"

@@ -3,7 +3,9 @@ package com.example.guilhermeoramos.gatherup;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,7 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.respostaID.setText(mRespostasID.get(position));
         holder.resposta.setText(mRespostas.get(position));
         holder.autor.setText(mAutores.get(position));
@@ -63,6 +65,38 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
                 ((Activity)mContext).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+
+        holder.btnUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer likes =  Integer.parseInt(holder.likes.getText().toString().trim());
+                likes++;
+                holder.likes.setText(likes.toString());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    holder.btnUp.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle_blue));
+                    holder.btnDown.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle_info_light));
+
+                }
+                holder.btnUp.setEnabled(false);
+                holder.btnDown.setEnabled(true);
+
+            }
+        });
+
+        holder.btnDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer likes =  Integer.parseInt(holder.likes.getText().toString().trim());
+                likes--;
+                holder.likes.setText(likes.toString());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    holder.btnDown.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle_blue));
+                    holder.btnUp.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle_info_light));
+                }
+                holder.btnDown.setEnabled(false);
+                holder.btnUp.setEnabled(true);
+            }
+        });
     }
 
     @Override
@@ -78,6 +112,8 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
         TextView likes;
         TextView comentarios;
         LinearLayout parentLayout;
+        LinearLayout btnUp;
+        LinearLayout btnDown;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +124,8 @@ public class RecyclerViewAdapterRespostas extends RecyclerView.Adapter<RecyclerV
             likes = itemView.findViewById(R.id.respostasItens_likes);
             comentarios = itemView.findViewById(R.id.respostasItens_comentarios);
             parentLayout = itemView.findViewById(R.id.perguntasItens_layout);
+            btnUp = itemView.findViewById(R.id.respostasItens_up);
+            btnDown = itemView.findViewById(R.id.respostasItens_down);
         }
     }
 }

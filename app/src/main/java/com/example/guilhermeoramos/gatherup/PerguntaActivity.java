@@ -1,20 +1,15 @@
 package com.example.guilhermeoramos.gatherup;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,8 +33,10 @@ public class PerguntaActivity extends Activity {
     private DatabaseReference refRespostas = database.getReference("respostas");
 
     private String perguntaID;
+    private String usuarioID;
 
     FloatingActionButton btnResponder;
+    ImageButton btnExcluir;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,8 +44,11 @@ public class PerguntaActivity extends Activity {
         setContentView(R.layout.activity_pergunta);
 
         btnResponder = findViewById(R.id.pergunta_responder);
+        btnExcluir = findViewById(R.id.pergunta_excluir);
 
         getIncomingIntent();
+        verificarUsuario();
+
         readData(new MyCallback() {
             @Override
             public void onCallback() {
@@ -59,7 +59,28 @@ public class PerguntaActivity extends Activity {
         responder();
     }
 
-    private void responder(){
+    private void goMain() {
+        Intent intent = new Intent(PerguntaActivity.this, MainActivity.class);
+        PerguntaActivity.this.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    private void verificarUsuario() {
+        Log.d("myApp", usuarioID);
+        if (usuarioID.equals("1")) {
+            btnExcluir.setVisibility(View.VISIBLE);
+            btnExcluir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Firebase firebase = new Firebase();
+                    firebase.deletarPergunta(perguntaID);
+                    goMain();
+                }
+            });
+        }
+    }
+
+    private void responder() {
         btnResponder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +136,7 @@ public class PerguntaActivity extends Activity {
             String data = getIntent().getStringExtra("data");
             String autor = getIntent().getStringExtra("autor");
             perguntaID = getIntent().getStringExtra("perguntaid");
+            usuarioID = getIntent().getStringExtra("usuarioid");
 
             TextView txtTitulo = findViewById(R.id.pergunta_titulo);
             txtTitulo.setText(titulo);

@@ -60,13 +60,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="Criada por Guilherme Ramos," />
 
-            <TextView
-                android:id="@+id/grupositens_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="em 30/09/2018" />
+            <!--<TextView-->
+                <!--android:id="@+id/grupositens_data"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="em 30/09/2018" />-->
         </LinearLayout>
 
     </LinearLayout>

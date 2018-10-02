@@ -13,12 +13,13 @@ public class Pergunta {
     private String data;
     private String likes;
     private String comentarios;
+    private String grupo_id;
 
-    public Pergunta(){
+    public Pergunta() {
 
     }
 
-    public Pergunta(String pergunta_id, String titulo, String descricao, String tag, String likes, String comentarios){
+    public Pergunta(String pergunta_id, String titulo, String descricao, String tag, String likes, String comentarios, String grupo_id) {
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyyy");
         this.pergunta_id = pergunta_id;
@@ -29,6 +30,7 @@ public class Pergunta {
         this.tag = tag;
         this.likes = likes;
         this.comentarios = comentarios;
+        this.grupo_id = grupo_id;
     }
 
     public String getPergunta_id() {
@@ -93,6 +95,14 @@ public class Pergunta {
 
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
+    }
+
+    public String getGrupo_id() {
+        return grupo_id;
+    }
+
+    public void setGrupo_id(String grupo_id) {
+        this.grupo_id = grupo_id;
     }
 
 }

@@ -20,7 +20,7 @@
         android:layout_marginTop="30dp"
         android:hint="Título"
         android:inputType="textCapSentences"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/cadastro_step1_descricao"

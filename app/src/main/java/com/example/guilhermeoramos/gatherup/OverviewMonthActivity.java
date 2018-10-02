@@ -23,6 +23,7 @@ public class OverviewMonthActivity extends Activity {
     private ArrayList<String> mLikes = new ArrayList<>();
     private ArrayList<String> mComentarios = new ArrayList<>();
     private ArrayList<String> mPerguntasID = new ArrayList<>();
+    private ArrayList<String> mUsuariosID = new ArrayList<>();
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference refPerguntas = database.getReference("perguntas");
@@ -58,6 +59,7 @@ public class OverviewMonthActivity extends Activity {
                     mLikes.add(pergunta.getLikes());
                     mComentarios.add(pergunta.getComentarios());
                     mPerguntasID.add(pergunta.getPergunta_id());
+                    mUsuariosID.add(pergunta.getUsuario_id());
                 }
                 myCallback.onCallback();
             }
@@ -70,7 +72,7 @@ public class OverviewMonthActivity extends Activity {
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.overview_month_recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mPerguntasID, this, PerguntaActivity.class);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mPerguntasID, mUsuariosID, this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -70,4 +70,13 @@
         android:layout_weight="100"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/grupos_grupo_nova_pergunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_plus"
+        app:rippleColor="@color/colorBlueTwitter" />
+
 </android.support.design.widget.CoordinatorLayout>

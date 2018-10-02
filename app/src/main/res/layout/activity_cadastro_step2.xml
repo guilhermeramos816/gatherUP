@@ -36,17 +36,20 @@
                 android:layout_weight="95"
                 android:hint="Pesquisar uma tag"
                 android:inputType="textCapSentences"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <android.support.design.widget.FloatingActionButton
+                android:id="@+id/cadastro_step2_pesquisar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
+                app:fabCustomSize="40dp"
                 android:src="@drawable/ic_search" />
 
         </LinearLayout>
 
         <ListView
+            android:id="@+id/cadastro_step2_lista"
             android:layout_width="match_parent"
             android:layout_height="240dp" />
 

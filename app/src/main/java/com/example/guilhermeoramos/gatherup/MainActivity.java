@@ -32,13 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mLikes = new ArrayList<>();
     private ArrayList<String> mComentarios = new ArrayList<>();
     private ArrayList<String> mPerguntasID = new ArrayList<>();
+    private ArrayList<String> mUsuariosID = new ArrayList<>();
 
     private boolean isFABOpen = false;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference refPerguntas = database.getReference("perguntas");
-
-    private String user_id = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         goNewQuestion();
         goNextPage();
+
+        Firebase f = new Firebase();
+        f.enviarTags();
     }
 
     public interface MyCallback {
@@ -62,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void readData(final MyCallback myCallback) {
         refPerguntas
-                .orderByChild("usuario_id")
-                .startAt(user_id)
-                .endAt(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                .orderByChild("grupo_id")
+                .startAt("0")
+                .endAt("0")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     mLikes.add(pergunta.getLikes());
                     mComentarios.add(pergunta.getComentarios());
                     mPerguntasID.add(pergunta.getPergunta_id());
+                    mUsuariosID.add(pergunta.getUsuario_id());
                 }
                 myCallback.onCallback();
             }
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerView");
         RecyclerView recyclerView = findViewById(R.id.main_recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mPerguntasID, this, PerguntaActivity.class);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitulos, mDescricoes, mDatas, mAutores, mLikes, mComentarios, mPerguntasID, mUsuariosID,this, PerguntaActivity.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -158,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CadastroStep1Activity.class);
+                intent.putExtra("grupoid", "0");
                 MainActivity.this.startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
